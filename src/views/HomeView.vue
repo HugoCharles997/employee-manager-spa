@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<md-table>
+			<button @click="getUserById"></button>
 			<md-table-row>
 				<md-table-head md-numeric>ID</md-table-head>
 				<md-table-head>Name</md-table-head>
@@ -14,17 +15,51 @@
 				<md-table-cell>{{ user.email }}</md-table-cell>
 				<md-table-cell>{{ user.gender }}</md-table-cell>
 				<md-table-cell>{{ user.jobTitle }}</md-table-cell>
+				<md-table-cell>
+					<button @click="getUserById(user.id)">get users</button>
+				</md-table-cell>
 			</md-table-row>
 		</md-table>
+		<!-- <add-user-form @addNewUser="addNewUser"></add-user-form> // here to call a potential form if it is in another component -->
+
+		<template>
+			<div>
+				<form @submit.prevent="addNewUser">
+					<label>
+						Name:
+						<input type="text" v-model="newUser.name" />
+					</label>
+					<label>
+						Email:
+						<input type="email" v-model="newUser.email" />
+					</label>
+					<label>
+						Gender:
+						<select v-model="newUser.gender">
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+						</select>
+					</label>
+					<label>
+						Job Title:
+						<input type="text" v-model="newUser.jobTitle" />
+					</label>
+					<button type="submit">Add User</button>
+				</form>
+			</div>
+		</template>
 	</div>
 </template>
 
 <script>
+import AddView from "@/views/AddView.vue";
 // @ is an alias to /src
 
 export default {
 	name: "HomeView",
-	components: {},
+	components: {
+		AddView,
+	},
 	data() {
 		return {
 			users: [
@@ -50,7 +85,47 @@ export default {
 					jobTitle: "Community Outreach Specialist",
 				},
 			],
+			newUser: {
+				name: "",
+				email: "",
+				gender: "",
+				jobTitle: "",
+			},
 		};
+	},
+	methods: {
+		getAllUsers() {
+			return this.users;
+		},
+
+		getUserById(id = null) {
+			if (id !== null) {
+				const user = this.users.find((user) => user.id === id);
+				console.log(user);
+				return user;
+			}
+			console.log("ID not provided");
+		},
+
+		addUser(newUser) {
+			this.users.push(newUser);
+		},
+
+		addNewUser() {
+			const maxId = this.users.reduce((max, user) => {
+				return user.id > max ? user.id : max;
+			}, 0);
+
+			const newUser = {
+				id: maxId + 1,
+				name: this.newUser.name,
+				email: this.newUser.email,
+				gender: this.newUser.gender,
+				jobTitle: this.newUser.jobTitle,
+			};
+			this.addUser(newUser);
+			this.newUser = {};
+		},
 	},
 };
 </script>
