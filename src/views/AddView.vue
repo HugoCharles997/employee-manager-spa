@@ -28,23 +28,6 @@
 		</nav>
 		<router-view />
 	</div>
-</template>
-
-<script>
-  export default {
-    name: 'TextFields',
-    data: () => ({
-      initial: 'Initial Value',
-      type: null,
-      withLabel: null,
-      inline: null,
-      number: null,
-      textarea: null,
-      autogrow: null,
-      disabled: null
-    })
-  }
-  
 	<!-- <div id="app">
 		<form @submit.prevent="addNewUser">
 			<label>
@@ -74,10 +57,20 @@
 <script>
 import HomeView from "@/views/HomeView.vue";
 export default {
-	name: "AddView",
+	name: "TextFields",
 	components: {
 		HomeView,
 	},
+	data: () => ({
+		initial: "Initial Value",
+		type: null,
+		withLabel: null,
+		inline: null,
+		number: null,
+		textarea: null,
+		autogrow: null,
+		disabled: null,
+	}),
 	data() {
 		return {
 			name: "",
@@ -93,6 +86,5 @@ export default {
 			},
 		};
 	},
-	methods: {},
 };
 </script>
