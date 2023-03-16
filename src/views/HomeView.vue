@@ -1,7 +1,12 @@
 <template>
-	<div>
+	<div class="employee-list">
+		<div class="header-list">
+			<h1 class="title">EMPLOYEE MANAGER</h1>
+			<md-button class="add-employee md-raised md-primary"
+				>Add employee</md-button
+			>
+		</div>
 		<md-table>
-			<button @click="getUserById"></button>
 			<md-table-row>
 				<md-table-head md-numeric>ID</md-table-head>
 				<md-table-head>Name</md-table-head>
@@ -16,13 +21,16 @@
 				<md-table-cell>{{ user.gender }}</md-table-cell>
 				<md-table-cell>{{ user.jobTitle }}</md-table-cell>
 				<md-table-cell>
-					<button @click="getUserById(user.id)">get users</button>
+					<md-button class="md-raised md-primary">Edit</md-button>
+					<md-button @click="getUserById(user.id)" class="md-raised"
+						>Delete</md-button
+					>
 				</md-table-cell>
 			</md-table-row>
 		</md-table>
 		<!-- <add-user-form @addNewUser="addNewUser"></add-user-form> // here to call a potential form if it is in another component -->
 
-		<template>
+		<!-- <template>
 			<div>
 				<form @submit.prevent="addNewUser">
 					<label>
@@ -47,9 +55,23 @@
 					<button type="submit">Add User</button>
 				</form>
 			</div>
-		</template>
+		</template> -->
 	</div>
 </template>
+
+<style>
+.title {
+	text-align: center;
+}
+.add-employee {
+}
+.md-table .md-content {
+}
+.employee-list {
+	max-width: 80%;
+	margin: 20vh auto;
+}
+</style>
 
 <script>
 import AddView from "@/views/AddView.vue";
