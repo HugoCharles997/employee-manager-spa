@@ -1,5 +1,11 @@
 <template>
-	<div>
+	<div class="employee-list">
+		<div class="header-list">
+			<h1 class="title">EMPLOYEE MANAGER</h1>
+			<md-button class="add-employee md-raised md-primary"
+				>Add employee</md-button
+			>
+		</div>
 		<md-table>
 			<md-table-row>
 				<md-table-head md-numeric>ID</md-table-head>
@@ -22,7 +28,7 @@
 		</md-table>
 		<!-- <add-user-form @addNewUser="addNewUser"></add-user-form> // here to call a potential form if it is in another component -->
 
-		<template>
+		<!-- <template>
 			<div>
 				<form @submit.prevent="addNewUser">
 					<label>
@@ -47,10 +53,24 @@
 					<button type="submit">Add User</button>
 				</form>
 			</div>
-			<!-- <div v-if={showError}> Veuillez remplir tous les champ ! </div> -->
-		</template>
+			<div v-if={showError}> Veuillez remplir tous les champ ! </div>
+		</template> -->
 	</div>
 </template>
+
+<style>
+.title {
+	text-align: center;
+}
+.add-employee {
+}
+.md-table .md-content {
+}
+.employee-list {
+	max-width: 80%;
+	margin: 20vh auto;
+}
+</style>
 
 <script>
 import AddView from "@/views/AddView.vue";
