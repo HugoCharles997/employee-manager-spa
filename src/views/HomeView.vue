@@ -1,6 +1,7 @@
 <template>
 	<div class="employee-list">
 		<div class="header-list">
+			<Navbar />
 			<h1 class="title">EMPLOYEE MANAGER</h1>
 			<md-button class="add-employee md-raised md-primary"
 				>Add employee</md-button
@@ -75,12 +76,14 @@
 
 <script>
 import AddView from "@/views/AddView.vue";
+import Navbar from "@/components/Navbar.vue";
 // @ is an alias to /src
 
 export default {
 	name: "HomeView",
 	components: {
 		AddView,
+		Navbar,
 	},
 	data() {
 		return {

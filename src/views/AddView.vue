@@ -1,5 +1,6 @@
 <template>
 	<div class="add">
+		<Navbar />
 		<h1>Ajouter un nouveau employé</h1>
 		<div>
 			<md-field>
@@ -56,10 +57,12 @@
 
 <script>
 import HomeView from "@/views/HomeView.vue";
+import Navbar from "@/components/Navbar.vue";
 export default {
 	name: "TextFields",
 	components: {
 		HomeView,
+		Navbar,
 	},
 	data: () => ({
 		initial: "Initial Value",
