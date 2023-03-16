@@ -1,13 +1,13 @@
-//npm install express
-//npm install mongodb
-//npm install body-parser
-//npm install mongoose
-//npm i -S cors
-//npm install bson
+/** Liste des dependences pour l'api */
+// npm install express
+// npm install mongodb
+// npm install body-parser
+// npm install mongoose
+// npm i -S cors
+// npm install bson
 
 const express = require('express');
 const cors = require('cors');
-
 const {connecter} = require('./common/dao');
 const routesUser = require('./router/routes');
 
@@ -23,28 +23,26 @@ app.get('/', (req, res, next) => {
     next();
 });
 
-const port = process.env.PORT || 3000;
-
-connecter("mongodb://127.0.0.1:27017/", (erreur) => {
-    if (erreur){
-        console.log('Error 404');
-        process.exit(-1);
-    } else {
-        console.log('Connexion à la base de donnnées établie');
-        app.listen(port, () => console.log('Attente des requets au port '+port+' ...'));
-    }
+app.get('/api', (req, res, next) => {
+    res.send("Votre requete a bien été reçue ! ");
+    next();
 });
 
-// const { MongoClient, Db } = require("mongodb");
+// port que l'on va utiliser
+const port = process.env.PORT || 3000;
 
-// let client = null;
+// connexion a la bdd mongo
+connecter("mongodb://127.0.0.1:27017/", (erreur) => {
+    if (erreur)
+    {
+        console.log('Error 404');
+        process.exit(-1);
+    }
+    else
+    {
+        // mise en place du serveur si connexion à la bdd reussi
 
-// url = "mongodb://127.0.0.1:27017/";
-
-// client = new MongoClient(url);
-
-// client.connect();
-
-// console.log('Connexion à la base de donnnées établie');
-
-// app.listen(port, () => console.log('Attente des requets au port ' + port + ' ...'));
+        console.log('Connexion à la base de donnnées établie');
+        app.listen(port, () => console.log('Attente des requets au port ' + port + ' ...'));
+    }
+});

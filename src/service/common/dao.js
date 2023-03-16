@@ -3,18 +3,24 @@ const { MongoClient, Db } = require("mongodb");
 let client = null;
 
 const connecter = (url, callback) =>{
-    if(client==null){
+    if(client==null)
+    {
         client = new MongoClient(url);
 
-        client.connect((erreur)=>{
-            if(erreur){
+        client.connect((erreur) => {
+            if(erreur)
+            {
                 client=null;
                 callback(erreur);
-            } else{
+            }
+            else
+            {
                 callback();
             }
         })
-    } else{
+    }
+    else
+    {
         callback();
     }
 }

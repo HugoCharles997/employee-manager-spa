@@ -1,6 +1,6 @@
 const User = require('../common/schema');
 const client = require('../common/dao');
-const { ObjectID } = require("bson");
+const ObjectID = require("bson");
 
 client.connecter('mongodb://127.0.0.1:27017/');
 
@@ -37,9 +37,12 @@ const getAllUsers = async (req, res) => {
             .find();
 
         let result = await cursor.toArray();
-        if (result.length > 0) {
+        if (result.length > 0)
+        {
             res.status(200).json(result);
-        } else {
+        }
+        else
+        {
             res.status(204).json({msg : 'Aucune employe trouvé.'});
         }
 	}
@@ -51,8 +54,9 @@ const getAllUsers = async (req, res) => {
 }
 
 const getUserById = async (req, res) => {
-    try {
-        let id = new ObjectID(req.params.id);
+    try
+    {
+        let id = new ObjectID.ObjectId(req.query.id);
 
         let cursor = client
             .db()
@@ -60,20 +64,27 @@ const getUserById = async (req, res) => {
             .find({_id : id});
 
         let result = await cursor.toArray();
-        if (result.length > 0) {
+        if (result.length > 0)
+        {
             res.status(200).json(result[0]);
-        } else {
+        }
+        else
+        {
             res.status(204).json({msg : "Cet employe n'existe pas"});
         }
-    } catch (error) {
+    }
+    catch (error)
+    {
         console.log(error);
         res.status(500).json(error);
     }
 };
 
 const editUser = async (req, res) => {
-    try {
-        let id = new ObjectID(req.params.id);
+    try
+    {
+        let id = new ObjectID.ObjectId(req.query.id);
+
 		let nName = req.body.name;
 		let eEmail = req.body.email;
 		let gGender = req.body.gender;
@@ -95,32 +106,43 @@ const editUser = async (req, res) => {
                 }
             );
         
-        if (cursor.modifiedCount !== 1){
+        if (cursor.modifiedCount != 1)
+        {
             res.status(200).json({msg : "Modification réussie"});
-        } else{
-            res.status(404).json({msg : "Cette employes n'existe pas"});
+        } 
+        else
+        {
+            res.status(404).json({msg : "Cet employe n'existe pas"});
         }
-    } catch (error) {
+    } 
+    catch (error)
+    {
         console.log(error);
         res.status(500).json(error);
     }
 };
 
 const deleteUserById = async (req, res) => {
-    try {
-        let id = new ObjectID(req.query.id);
+    try 
+    {
+        let id = new ObjectID.ObjectId(req.query.id);
 
         let cursor = client
             .db()
             .collection('employes')
             .deleteOne({_id : id});
 
-            if (cursor.deletedCount !== 1){
+            if (cursor.deletedCount != 1)
+            {
                 res.status(200).json({msg : "Suppression de " + req.query.id + " réussie"});
-            } else{id
+            }
+            else
+            {
                 res.status(404).json({msg : "Il n'y a pas d'employe pour cet id"});
             }
-    } catch (error) {
+    }
+    catch (error) 
+    {
         console.log(error);
         res.status(500).json(error);
     }
