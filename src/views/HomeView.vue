@@ -14,17 +14,15 @@
 				<md-table-head>Gender</md-table-head>
 				<md-table-head>Job Title</md-table-head>
 			</md-table-row>
-			<md-table-row v-for="user in users" :key="user.id">
-				<md-table-cell md-numeric>{{ user.id }}</md-table-cell>
+			<md-table-row v-for="user in users" :key="user._id">
+				<md-table-cell md-numeric>{{ user._id }}</md-table-cell>
 				<md-table-cell>{{ user.name }}</md-table-cell>
 				<md-table-cell>{{ user.email }}</md-table-cell>
 				<md-table-cell>{{ user.gender }}</md-table-cell>
 				<md-table-cell>{{ user.jobTitle }}</md-table-cell>
 				<md-table-cell>
-					<md-button class="md-raised md-primary">Edit</md-button>
-					<md-button @click="getUserById(user.id)" class="md-raised"
-						>Delete</md-button
-					>
+					<md-button class="md-raised md-primary" @click="editUser(user._id)">Edit</md-button>
+					<md-button class="md-raised" @click="deleteFormUser(user._id)">Delete</md-button>
 				</md-table-cell>
 			</md-table-row>
 		</md-table>
@@ -55,6 +53,7 @@
 					<button type="submit">Add User</button>
 				</form>
 			</div>
+			<div v-if={showError}> Veuillez remplir tous les champ ! </div>
 		</template> -->
 	</div>
 </template>
@@ -75,6 +74,7 @@
 
 <script>
 import AddView from "@/views/AddView.vue";
+import globalFunc from '../assets/functions';
 // @ is an alias to /src
 
 export default {
@@ -82,72 +82,67 @@ export default {
 	components: {
 		AddView,
 	},
+
+	// on recupere les fonctions globale du crud
+	mixins: [globalFunc],
+
 	data() {
 		return {
-			users: [
-				{
-					id: 1,
-					name: "Shawna Dubbin",
-					email: "sdubbin0@geocities.com",
-					gender: "Male",
-					jobTitle: "Assistant Media Planner",
-				},
-				{
-					id: 2,
-					name: "Odette Demageard",
-					email: "odemageard1@spotify.com",
-					gender: "Female",
-					jobTitle: "Account Coordinator",
-				},
-				{
-					id: 3,
-					name: "Vera Taleworth",
-					email: "vtaleworth2@google.ca",
-					gender: "Male",
-					jobTitle: "Community Outreach Specialist",
-				},
-			],
 			newUser: {
 				name: "",
 				email: "",
 				gender: "",
 				jobTitle: "",
 			},
+			// showError: false,
 		};
 	},
 	methods: {
-		getAllUsers() {
-			return this.users;
-		},
-
 		getUserById(id = null) {
 			if (id !== null) {
-				const user = this.users.find((user) => user.id === id);
+				const user = this.users.find((user) => user._id === id);
 				console.log(user);
 				return user;
 			}
 			console.log("ID not provided");
 		},
 
-		addUser(newUser) {
-			this.users.push(newUser);
-		},
-
 		addNewUser() {
-			const maxId = this.users.reduce((max, user) => {
-				return user.id > max ? user.id : max;
-			}, 0);
+			if (!this.newUser.name ||
+				!this.newUser.email ||
+				!this.newUser.gender ||
+				!this.newUser.jobTitle)
+			{
+				// input vide => message d'erreur
+				// this.showError = true;
+			}
+			else
+			{
+				// soummettre le formulaire
 
-			const newUser = {
-				id: maxId + 1,
-				name: this.newUser.name,
-				email: this.newUser.email,
-				gender: this.newUser.gender,
-				jobTitle: this.newUser.jobTitle,
-			};
-			this.addUser(newUser);
-			this.newUser = {};
+				const maxId = this.users.reduce((max, user) => {
+					return user._id > max ? user._id : max;
+				}, 0);
+
+				const newUser = {
+					id: maxId + 1,
+					name: this.newUser.name,
+					email: this.newUser.email,
+					gender: this.newUser.gender,
+					jobTitle: this.newUser.jobTitle,
+				};
+
+				this.addUser(newUser);
+				
+				this.newUser = {};
+
+				this.showError = false;
+			}
 		},
+
+		deleteFormUser(id) {
+			this.deleteUser(id);
+		}
 	},
 };
 </script>
