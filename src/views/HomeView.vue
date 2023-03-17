@@ -117,38 +117,6 @@ export default {
 			console.log("ID not provided");
 		},
 
-		addNewUser() {
-			if (
-				!this.newUser.name ||
-				!this.newUser.email ||
-				!this.newUser.gender ||
-				!this.newUser.jobTitle
-			) {
-				// input vide => message d'erreur
-				// this.showError = true;
-			} else {
-				// soummettre le formulaire
-
-				const maxId = this.users.reduce((max, user) => {
-					return user._id > max ? user._id : max;
-				}, 0);
-
-				const newUser = {
-					id: maxId + 1,
-					name: this.newUser.name,
-					email: this.newUser.email,
-					gender: this.newUser.gender,
-					jobTitle: this.newUser.jobTitle,
-				};
-
-				this.addUser(newUser);
-
-				this.newUser = {};
-
-				this.showError = false;
-			}
-		},
-
 		deleteFormUser(id) {
 			this.deleteUser(id);
 		},
