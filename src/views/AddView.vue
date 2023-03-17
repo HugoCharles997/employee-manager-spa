@@ -23,6 +23,9 @@
 				<md-input v-model="type"></md-input>
 			</md-field>
 		</div>
+		<md-button @click="addNewUser()" class="add-employee md-raised md-primary"
+			>Add employee</md-button
+		>
 		<nav>
 			<router-link to="/">List</router-link>
 			<HomeView />
@@ -56,6 +59,7 @@
 </template>
 
 <script>
+import globalFunc from "../assets/functions";
 import HomeView from "@/views/HomeView.vue";
 import Navbar from "@/components/Navbar.vue";
 export default {
@@ -64,6 +68,9 @@ export default {
 		HomeView,
 		Navbar,
 	},
+
+	mixins: [globalFunc],
+
 	data: () => ({
 		initial: "Initial Value",
 		type: null,
@@ -88,6 +95,39 @@ export default {
 				jobTitle: "",
 			},
 		};
+	},
+	methods: {
+		addNewUser() {
+			if (
+				!this.newUser.name ||
+				!this.newUser.email ||
+				!this.newUser.gender ||
+				!this.newUser.jobTitle
+			) {
+				// input vide => message d'erreur
+				// this.showError = true;
+			} else {
+				// soummettre le formulaire
+
+				const maxId = this.users.reduce((max, user) => {
+					return user._id > max ? user._id : max;
+				}, 0);
+
+				const newUser = {
+					id: maxId + 1,
+					name: this.newUser.name,
+					email: this.newUser.email,
+					gender: this.newUser.gender,
+					jobTitle: this.newUser.jobTitle,
+				};
+
+				this.addUser(newUser);
+
+				this.newUser = {};
+
+				this.showError = false;
+			}
+		},
 	},
 };
 </script>
