@@ -8,48 +8,48 @@
 			<h1>ADD NEW EMPLOYEE</h1>
 			<div>
 				<div>
-          <form @submit.prevent="addNewUser">
-            <md-field class="form-imput">
-              <label>Name</label>
-              <md-input type="text" v-model="newUser.name"></md-input>
-            </md-field>
+					<form @submit.prevent="addNewUser">
+						<md-field class="form-imput">
+							<label>Name</label>
+							<md-input type="text" v-model="newUser.name"></md-input>
+						</md-field>
 
-            <md-field class="form-imput">
-              <label>Email</label>
-              <md-input type="email" v-model="newUser.email"></md-input>
-            </md-field>
+						<md-field class="form-imput">
+							<label>Email</label>
+							<md-input type="email" v-model="newUser.email"></md-input>
+						</md-field>
 
-            <md-field class="form-imput">
-              <label>Gender</label>
-              <md-input type="text" v-model="newUser.gender"></md-input>
-            </md-field>
+						<md-field class="form-imput">
+							<label>Gender</label>
+							<md-input type="text" v-model="newUser.gender"></md-input>
+						</md-field>
 
-            <md-field class="form-imput">
-              <label>Job Title</label>
-              <md-input type="text" v-model="newUser.jobTitle"></md-input>
-            </md-field>
-            <md-button class="add-employee md-raised md-primary"
-              >Add employee</md-button
-            >
-            </form>
+						<md-field class="form-imput">
+							<label>Job Title</label>
+							<md-input type="text" v-model="newUser.jobTitle"></md-input>
+						</md-field>
+						<md-button class="add-employee md-raised md-primary"
+							>Add employee</md-button
+						>
+					</form>
 				</div>
 			</div>
 		</div>
-    
-    <div v-if=showError> Veuillez remplir tous les champs ! </div>
-		<div v-if=showSuccess> Le formulaire a été correctement rempli ! </div>
+
+		<div v-if="showError">Veuillez remplir tous les champs !</div>
+		<div v-if="showSuccess">Le formulaire a été correctement rempli !</div>
 
 		<nav>
 			<router-link to="/">List</router-link>
 			<HomeView />
 		</nav>
-    
+
 		<router-view />
 	</div>
 </template>
 
 <script>
-import globalFunc from "../assets/functions";
+//import globalFunc from "../assets/functions";
 import HomeView from "@/views/HomeView.vue";
 import Navbar from "@/components/Navbar.vue";
 import globalFunc from "@/assets/functions";
@@ -63,7 +63,7 @@ export default {
 
 	// on recupere les fonctions globale du crud
 	mixins: [globalFunc],
-  
+
 	data() {
 		return {
 			newUser: {
@@ -100,7 +100,6 @@ export default {
 		},
 
 		addNewUser() {
-
 			// on reset les messages du template a chaque clique sur l'ajout d'utilisateur
 			this.showError = false;
 			this.showSuccess = false;
@@ -111,11 +110,9 @@ export default {
 				!this.newUser.gender ||
 				!this.newUser.jobTitle
 			) {
-      
 				// input vide => on affiche le message de succes
 				this.showError = true;
 			} else {
-
 				// soummettre le formulaire
 
 				// on recupere l'id max pour eviter des conflits d'id et maintenir l'uniciter des id
@@ -143,7 +140,7 @@ export default {
 				this.showError = false;
 			}
 		},
-	}
+	},
 };
 </script>
 
