@@ -1,7 +1,9 @@
 <template>
 	<div class="add">
-		<h1>ADD NEW EMPLOYEE</h1>
-		<div>
+		<div class="header-list">
+			<h1 class="title">EMPLOYEE MANAGER</h1>
+		</div>
+		<div class="form">
 			<md-field>
 				<label>Name</label>
 				<md-input type="text" v-model="newUser.name"></md-input>
