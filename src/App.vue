@@ -1,10 +1,14 @@
 <template>
 	<div id="app">
-		<nav>
-			<router-link to="/">List</router-link> |
-			<router-link to="/add">Add</router-link>
-			<div></div>
-		</nav>
 		<router-view />
 	</div>
 </template>
+<style>
+#app {
+	max-width: 80%;
+	margin: 0 auto;
+}
+</style>
+<script>
+export default {};
+</script>
