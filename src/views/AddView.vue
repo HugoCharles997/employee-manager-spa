@@ -23,7 +23,7 @@
 						<md-input type="text" v-model="newUser.gender"></md-input>
 					</md-field>
 
-					<md-field>
+					<md-field class="form-imput">
 						<label>Job Title</label>
 						<md-input type="text" v-model="newUser.jobTitle"></md-input>
 					</md-field>
