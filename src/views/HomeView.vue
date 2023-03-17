@@ -31,35 +31,6 @@
 				</md-table-cell>
 			</md-table-row>
 		</md-table>
-		<!-- <add-user-form @addNewUser="addNewUser"></add-user-form> // here to call a potential form if it is in another component -->
-
-		<!-- <template>
-			<div>
-				<form @submit.prevent="addNewUser">
-					<label>
-						Name:
-						<input type="text" v-model="newUser.name" />
-					</label>
-					<label>
-						Email:
-						<input type="email" v-model="newUser.email" />
-					</label>
-					<label>
-						Gender:
-						<select v-model="newUser.gender">
-							<option value="Male">Male</option>
-							<option value="Female">Female</option>
-						</select>
-					</label>
-					<label>
-						Job Title:
-						<input type="text" v-model="newUser.jobTitle" />
-					</label>
-					<button type="submit">Add User</button>
-				</form>
-			</div>
-			<div v-if={showError}> Veuillez remplir tous les champ ! </div>
-		</template> -->
 	</div>
 </template>
 

@@ -27,15 +27,24 @@
 						<label>Job Title</label>
 						<md-input type="text" v-model="newUser.jobTitle"></md-input>
 					</md-field>
-					<md-button @click="addNewUser()" class="add-employee md-raised md-primary">Add employee</md-button>
+					<md-button class="add-employee md-raised md-primary"
+						>Add employee</md-button
+					>
 				</div>
 			</div>
 		</div>
+
+		<nav>
+			<router-link to="/">List</router-link>
+			<HomeView />
+		</nav>
+
 		<router-view />
 	</div>
 </template>
 
 <script>
+import globalFunc from "../assets/functions";
 import HomeView from "@/views/HomeView.vue";
 import Navbar from "@/components/Navbar.vue";
 export default {
@@ -44,6 +53,9 @@ export default {
 		HomeView,
 		Navbar,
 	},
+
+	mixins: [globalFunc],
+
 	data: () => ({
 		initial: "Initial Value",
 		type: null,
@@ -69,6 +81,39 @@ export default {
 			},
 		};
 	},
+	methods: {
+		addNewUser() {
+			if (
+				!this.newUser.name ||
+				!this.newUser.email ||
+				!this.newUser.gender ||
+				!this.newUser.jobTitle
+			) {
+				// input vide => message d'erreur
+				// this.showError = true;
+			} else {
+				// soummettre le formulaire
+
+				const maxId = this.users.reduce((max, user) => {
+					return user._id > max ? user._id : max;
+				}, 0);
+
+				const newUser = {
+					id: maxId + 1,
+					name: this.newUser.name,
+					email: this.newUser.email,
+					gender: this.newUser.gender,
+					jobTitle: this.newUser.jobTitle,
+				};
+
+				this.addUser(newUser);
+
+				this.newUser = {};
+
+				this.showError = false;
+			}
+		},
+	},
 };
 </script>
 
@@ -79,7 +124,7 @@ export default {
 	margin-top: 150px;
 	max-width: 80%;
 	background-color: #404040;
-	color: #FFFFFF;
+	color: #ffffff;
 }
 
 h1 {
@@ -98,9 +143,7 @@ label {
 }
 
 button {
-	margin-left: 5%;
-	margin-top: 2%;
-	color: #FFFFFF;
+	color: #ffffff;
 	border-radius: 10px;
 }
 </style>
