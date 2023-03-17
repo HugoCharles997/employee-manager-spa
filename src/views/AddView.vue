@@ -1,39 +1,55 @@
 <template>
 	<div class="add">
-		<h1>ADD NEW EMPLOYEE</h1>
-		<Navbar />
-		<h1>Ajouter un nouveau employé</h1>
-		<div>
-			<form @submit.prevent="addNewUser">
-				<md-field>
-					<label>Name</label>
-					<md-input type="text" v-model="newUser.name"></md-input>
-				</md-field>
-
-				<md-field>
-					<label>Email</label>
-					<md-input type="email" v-model="newUser.email"></md-input>
-				</md-field>
-
-				<md-field>
-					<label>Gender</label>
-					<md-input type="text" v-model="newUser.gender"></md-input>
-				</md-field>
-
-				<md-field>
-					<label>Job Title</label>
-					<md-input type="text" v-model="newUser.jobTitle"></md-input>
-				</md-field>
-				<md-button type="submit" class="add-employee md-raised md-primary">Add employee</md-button>
-			</form>
+		<div class="header-list">
+			<Navbar />
+			<h1 class="title">EMPLOYEE MANAGER</h1>
 		</div>
-		<div v-if=showError> Veuillez remplir tous les champs ! </div>
+		<div class="form">
+			<h1>ADD NEW EMPLOYEE</h1>
+			<div>
+				<div>
+          <form @submit.prevent="addNewUser">
+            <md-field class="form-imput">
+              <label>Name</label>
+              <md-input type="text" v-model="newUser.name"></md-input>
+            </md-field>
+
+            <md-field class="form-imput">
+              <label>Email</label>
+              <md-input type="email" v-model="newUser.email"></md-input>
+            </md-field>
+
+            <md-field class="form-imput">
+              <label>Gender</label>
+              <md-input type="text" v-model="newUser.gender"></md-input>
+            </md-field>
+
+            <md-field class="form-imput">
+              <label>Job Title</label>
+              <md-input type="text" v-model="newUser.jobTitle"></md-input>
+            </md-field>
+            <md-button class="add-employee md-raised md-primary"
+              >Add employee</md-button
+            >
+            </form>
+				</div>
+			</div>
+		</div>
+    
+    <div v-if=showError> Veuillez remplir tous les champs ! </div>
 		<div v-if=showSuccess> Le formulaire a été correctement rempli ! </div>
+
+		<nav>
+			<router-link to="/">List</router-link>
+			<HomeView />
+		</nav>
+    
 		<router-view />
 	</div>
 </template>
 
 <script>
+import globalFunc from "../assets/functions";
 import HomeView from "@/views/HomeView.vue";
 import Navbar from "@/components/Navbar.vue";
 import globalFunc from "@/assets/functions";
@@ -47,7 +63,7 @@ export default {
 
 	// on recupere les fonctions globale du crud
 	mixins: [globalFunc],
-
+  
 	data() {
 		return {
 			newUser: {
@@ -95,7 +111,7 @@ export default {
 				!this.newUser.gender ||
 				!this.newUser.jobTitle
 			) {
-
+      
 				// input vide => on affiche le message de succes
 				this.showError = true;
 			} else {
@@ -132,13 +148,13 @@ export default {
 </script>
 
 <style scoped>
-.add {
+.form {
 	margin-left: auto;
-    margin-right: auto;
+	margin-right: auto;
 	margin-top: 150px;
-    max-width: 80%;
+	max-width: 80%;
 	background-color: #404040;
-	color: #FFFFFF;
+	color: #ffffff;
 }
 
 h1 {
@@ -150,8 +166,14 @@ label {
 	margin-left: 5px;
 }
 
+.form-imput {
+	margin: 0 auto;
+	max-width: 90%;
+	padding-top: 5%;
+}
+
 button {
-	color: #FFFFFF;
+	color: #ffffff;
 	border-radius: 10px;
 }
 </style>
