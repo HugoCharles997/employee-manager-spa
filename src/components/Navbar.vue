@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
-		<md-button><router-link to="/">My Item 1</router-link></md-button>
-		<md-button><router-link to="/add">My Item 1</router-link></md-button>
+		<md-button><router-link to="/">Employee List</router-link></md-button>
+		<md-button><router-link to="/add">Add Employee</router-link></md-button>
 	</div>
 </template>
 <script>
@@ -11,7 +11,11 @@ export default {
 </script>
 
 <style scoped>
-.md-menu {
+a {
 	margin: 24px;
+	color: white !important;
+}
+#app {
+	margin: 5vh auto;
 }
 </style>

@@ -64,14 +64,14 @@
 .title {
 	text-align: center;
 }
-.add-employee {
+/* .add-employee {
 }
 .md-table .md-content {
 }
 .employee-list {
 	max-width: 80%;
-	margin: 20vh auto;
-}
+	margin: 0 auto;
+} */
 </style>
 
 <script>
