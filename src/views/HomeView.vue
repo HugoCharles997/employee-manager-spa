@@ -1,6 +1,7 @@
 <template>
 	<div class="employee-list">
 		<div class="header-list">
+			<Navbar />
 			<h1 class="title">EMPLOYEE MANAGER</h1>
 			<md-button class="add-employee md-raised md-primary"
 				>Add employee</md-button
@@ -21,8 +22,12 @@
 				<md-table-cell>{{ user.gender }}</md-table-cell>
 				<md-table-cell>{{ user.jobTitle }}</md-table-cell>
 				<md-table-cell>
-					<md-button class="md-raised md-primary" @click="editUser(user._id)">Edit</md-button>
-					<md-button class="md-raised" @click="deleteFormUser(user._id)">Delete</md-button>
+					<md-button class="md-raised md-primary" @click="editUser(user._id)"
+						>Edit</md-button
+					>
+					<md-button class="md-raised" @click="deleteFormUser(user._id)"
+						>Delete</md-button
+					>
 				</md-table-cell>
 			</md-table-row>
 		</md-table>
@@ -62,25 +67,30 @@
 .title {
 	text-align: center;
 }
-.add-employee {
+/* .add-employee {
 }
 .md-table .md-content {
 }
 .employee-list {
 	max-width: 80%;
-	margin: 20vh auto;
-}
+	margin: 0 auto;
+} */
 </style>
 
 <script>
 import AddView from "@/views/AddView.vue";
-import globalFunc from '../assets/functions';
+
+import Navbar from "@/components/Navbar.vue";
+
+import globalFunc from "../assets/functions";
+
 // @ is an alias to /src
 
 export default {
 	name: "HomeView",
 	components: {
 		AddView,
+		Navbar,
 	},
 
 	// on recupere les fonctions globale du crud
@@ -108,16 +118,15 @@ export default {
 		},
 
 		addNewUser() {
-			if (!this.newUser.name ||
+			if (
+				!this.newUser.name ||
 				!this.newUser.email ||
 				!this.newUser.gender ||
-				!this.newUser.jobTitle)
-			{
+				!this.newUser.jobTitle
+			) {
 				// input vide => message d'erreur
 				// this.showError = true;
-			}
-			else
-			{
+			} else {
 				// soummettre le formulaire
 
 				const maxId = this.users.reduce((max, user) => {
@@ -133,7 +142,7 @@ export default {
 				};
 
 				this.addUser(newUser);
-				
+
 				this.newUser = {};
 
 				this.showError = false;
@@ -142,7 +151,7 @@ export default {
 
 		deleteFormUser(id) {
 			this.deleteUser(id);
-		}
+		},
 	},
 };
 </script>
