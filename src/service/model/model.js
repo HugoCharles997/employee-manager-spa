@@ -1,6 +1,5 @@
 const User = require('../common/schema');
 const client = require('../common/dao');
-const ObjectID = require("bson");
 
 client.connecter('mongodb://127.0.0.1:27017/');
 
@@ -8,6 +7,7 @@ const addUser = async (req, res) => {
 	try
 	{
 		let user = new User({
+            _id: Number(req.body.id),
 			name: req.body.name,
 			email : req.body.email,
 			gender : req.body.gender,
@@ -56,12 +56,10 @@ const getAllUsers = async (req, res) => {
 const getUserById = async (req, res) => {
     try
     {
-        let id = new ObjectID.ObjectId(req.query.id);
-
         let cursor = client
             .db()
             .collection('employes')
-            .find({_id : id});
+            .find({_id : Number(req.query.id)});
 
         let result = await cursor.toArray();
         if (result.length > 0)
@@ -83,7 +81,7 @@ const getUserById = async (req, res) => {
 const editUser = async (req, res) => {
     try
     {
-        let id = new ObjectID.ObjectId(req.query.id);
+        let id = Number(req.query.id);
 
 		let nName = req.body.name;
 		let eEmail = req.body.email;
@@ -125,7 +123,7 @@ const editUser = async (req, res) => {
 const deleteUserById = async (req, res) => {
     try 
     {
-        let id = new ObjectID.ObjectId(req.query.id);
+        let id = Number(req.query.id);
 
         let cursor = client
             .db()
@@ -134,7 +132,7 @@ const deleteUserById = async (req, res) => {
 
             if (cursor.deletedCount != 1)
             {
-                res.status(200).json({msg : "Suppression de " + req.query.id + " réussie"});
+                res.status(200).json({msg : "Suppression de " + id + " réussie"});
             }
             else
             {
