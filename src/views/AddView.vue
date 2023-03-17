@@ -1,58 +1,32 @@
 <template>
 	<div class="add">
+		<h1>ADD NEW EMPLOYEE</h1>
 		<Navbar />
 		<h1>Ajouter un nouveau employé</h1>
 		<div>
 			<md-field>
-				<label>Nom</label>
-				<md-input v-model="type"></md-input>
+				<label>Name</label>
+				<md-input type="text" v-model="newUser.name"></md-input>
 			</md-field>
 
 			<md-field>
 				<label>Email</label>
-				<md-input v-model="type"></md-input>
+				<md-input type="email" v-model="newUser.email"></md-input>
 			</md-field>
 
 			<md-field>
-				<label>Genre</label>
-				<md-input v-model="type"></md-input>
+				<label>Gender</label>
+				<md-input type="text" v-model="newUser.gender"></md-input>
 			</md-field>
 
 			<md-field>
-				<label>Poste</label>
-				<md-input v-model="type"></md-input>
+				<label>Job Title</label>
+				<md-input type="text" v-model="newUser.jobTitle"></md-input>
 			</md-field>
+			<md-button class="add-employee md-raised md-primary">Add employee</md-button>
 		</div>
-		<nav>
-			<router-link to="/">List</router-link>
-			<HomeView />
-		</nav>
 		<router-view />
 	</div>
-	<!-- <div id="app">
-		<form @submit.prevent="addNewUser">
-			<label>
-				Name:
-				<input type="text" v-model="newUser.name" />
-			</label>
-			<label>
-				Email:
-				<input type="email" v-model="newUser.email" />
-			</label>
-			<label>
-				Gender:
-				<select v-model="newUser.gender">
-					<option value="Male">Male</option>
-					<option value="Female">Female</option>
-				</select>
-			</label>
-			<label>
-				Job Title:
-				<input type="text" v-model="newUser.jobTitle" />
-			</label>
-			<button type="submit">Add User</button>
-		</form>
-	</div> -->
 </template>
 
 <script>
@@ -91,3 +65,28 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+.add {
+	margin-left: auto;
+    margin-right: auto;
+	margin-top: 150px;
+    max-width: 80%;
+	background-color: #404040;
+	color: #FFFFFF;
+}
+
+h1 {
+	text-align: center;
+	padding-top: 15px;
+}
+
+label {
+	margin-left: 5px;
+}
+
+button {
+	color: #FFFFFF;
+	border-radius: 10px;
+}
+</style>
