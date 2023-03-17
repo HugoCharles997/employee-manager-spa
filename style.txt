@@ -1,0 +1,72 @@
+<style scoped>
+.add {
+	margin-left: auto;
+    margin-right: auto;
+	margin-top: 150px;
+    max-width: 60%;
+	/* border: solid 1px; */
+	background-color: #404040;
+	color: #FFFFFF;
+}
+
+h1 {
+	text-align: center;
+	padding-top: 15px;
+}
+
+label {
+	margin-left: 5px;
+}
+
+button {
+	color: #FFFFFF;
+	border-radius: 10px;
+}
+</style>
+
+<template>
+	<div class="add">
+		<h1>Ajouter un nouveau employé</h1>
+		<div id="formulaire">
+			<md-field>
+				<label>Nom</label>
+				<md-input type="text" v-model="newUser.name"></md-input>
+			</md-field>
+
+			<md-field>
+				<label>Email</label>
+				<md-input type="email" v-model="newUser.email"></md-input>
+			</md-field>
+
+			<md-field>
+				<label>Genre</label>
+				<md-input type="text" v-model="newUser.gender"></md-input>
+			</md-field>
+
+			<md-field>
+				<label>Poste</label>
+				<md-input type="text" v-model="newUser.jobTitle"></md-input>
+			</md-field>
+			<md-button class="md-dense md-raised md-primary" type="submit">Ajouter</md-button>
+		</div>
+		<!-- <nav>
+			<router-link to="/">Liste des employés</router-link>
+			<HomeView />
+		</nav> -->
+		<router-view />
+	</div>
+</template>
+
+export default {
+    name: 'TextFields',
+    data: () => ({
+      initial: 'Initial Value',
+      type: null,
+      withLabel: null,
+      inline: null,
+      number: null,
+      textarea: null,
+      autogrow: null,
+      disabled: null
+    })
+  }
