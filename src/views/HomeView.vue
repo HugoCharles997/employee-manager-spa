@@ -3,9 +3,6 @@
 		<div class="header-list">
 			<Navbar />
 			<h1 class="title">EMPLOYEE MANAGER</h1>
-			<md-button class="add-employee md-raised md-primary"
-				>Add employee</md-button
-			>
 		</div>
 		<md-table>
 			<md-table-row>

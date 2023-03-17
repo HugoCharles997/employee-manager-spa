@@ -9,7 +9,7 @@
 			<div>
 				<div>
 					<md-field class="form-imput">
-						<label>Name</label>
+						<label class="label">Name</label>
 						<md-input type="text" v-model="newUser.name"></md-input>
 					</md-field>
 
@@ -33,12 +33,6 @@
 				</div>
 			</div>
 		</div>
-
-		<nav>
-			<router-link to="/">List</router-link>
-			<HomeView />
-		</nav>
-
 		<router-view />
 	</div>
 </template>
@@ -123,8 +117,7 @@ export default {
 	margin-right: auto;
 	margin-top: 150px;
 	max-width: 80%;
-	background-color: #404040;
-	color: #ffffff;
+	background-color: white;
 }
 
 h1 {
@@ -132,7 +125,7 @@ h1 {
 	padding-top: 15px;
 }
 
-label {
+.label {
 	margin-left: 5px;
 }
 
