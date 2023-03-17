@@ -13,7 +13,7 @@ export default {
 <style scoped>
 a {
 	margin: 24px;
-	color: white !important;
+	color: black !important;
 }
 #app {
 	margin: 5vh auto;

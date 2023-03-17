@@ -8,6 +8,32 @@
 			<h1>ADD NEW EMPLOYEE</h1>
 			<div>
 				<div>
+
+					<md-field class="form-imput">
+						<label class="label">Name</label>
+						<md-input type="text" v-model="newUser.name"></md-input>
+					</md-field>
+
+					<md-field class="form-imput">
+						<label>Email</label>
+						<md-input type="email" v-model="newUser.email"></md-input>
+					</md-field>
+
+					<md-field class="form-imput">
+						<label>Gender</label>
+						<md-input type="text" v-model="newUser.gender"></md-input>
+					</md-field>
+
+					<md-field class="form-imput">
+						<label>Job Title</label>
+						<md-input type="text" v-model="newUser.jobTitle"></md-input>
+					</md-field>
+					<md-button class="add-employee md-raised md-primary"
+						>Add employee</md-button
+					>
+				</div>
+			</div>
+		</div>
           <form @submit.prevent="addNewUser">
             <md-field class="form-imput">
               <label>Name</label>
@@ -44,6 +70,7 @@
 			<HomeView />
 		</nav>
     
+
 		<router-view />
 	</div>
 </template>
@@ -153,8 +180,7 @@ export default {
 	margin-right: auto;
 	margin-top: 150px;
 	max-width: 80%;
-	background-color: #404040;
-	color: #ffffff;
+	background-color: white;
 }
 
 h1 {
@@ -162,7 +188,7 @@ h1 {
 	padding-top: 15px;
 }
 
-label {
+.label {
 	margin-left: 5px;
 }
 
