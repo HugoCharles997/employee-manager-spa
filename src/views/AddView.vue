@@ -23,14 +23,13 @@
 				<label>Job Title</label>
 				<md-input type="text" v-model="newUser.jobTitle"></md-input>
 			</md-field>
-			<md-button class="add-employee md-raised md-primary"
+			<md-button
+				@click="this.addNewUser()"
+				class="add-employee md-raised md-primary"
 				>Add employee</md-button
 			>
 		</div>
 
-		<md-button @click="addNewUser()" class="add-employee md-raised md-primary"
-			>Add employee</md-button
-		>
 		<nav>
 			<router-link to="/">List</router-link>
 			<HomeView />
