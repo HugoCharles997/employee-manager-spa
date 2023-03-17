@@ -7,26 +7,28 @@
 		<div class="form">
 			<h1>ADD NEW EMPLOYEE</h1>
 			<div>
-				<md-field class="form-imput">
-					<label>Name</label>
-					<md-input type="text" v-model="newUser.name"></md-input>
-				</md-field>
+				<div>
+					<md-field class="form-imput">
+						<label>Name</label>
+						<md-input type="text" v-model="newUser.name"></md-input>
+					</md-field>
 
-				<md-field class="form-imput">
-					<label>Email</label>
-					<md-input type="email" v-model="newUser.email"></md-input>
-				</md-field>
+					<md-field class="form-imput">
+						<label>Email</label>
+						<md-input type="email" v-model="newUser.email"></md-input>
+					</md-field>
 
-				<md-field class="form-imput">
-					<label>Gender</label>
-					<md-input type="text" v-model="newUser.gender"></md-input>
-				</md-field>
+					<md-field class="form-imput">
+						<label>Gender</label>
+						<md-input type="text" v-model="newUser.gender"></md-input>
+					</md-field>
 
-				<md-field class="form-imput">
-					<label>Job Title</label>
-					<md-input type="text" v-model="newUser.jobTitle"></md-input>
-				</md-field>
-				<md-button @click="addNewUser()" class="add-employee md-raised md-primary">Add employee</md-button>
+					<md-field class="form-imput">
+						<label>Job Title</label>
+						<md-input type="text" v-model="newUser.jobTitle"></md-input>
+					</md-field>
+					<md-button @click="addNewUser()" class="add-employee md-raised md-primary">Add employee</md-button>
+				</div>
 			</div>
 		</div>
 		<router-view />
