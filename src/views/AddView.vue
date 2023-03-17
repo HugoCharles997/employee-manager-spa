@@ -38,12 +38,6 @@
 
 		<div v-if="showError">Veuillez remplir tous les champs !</div>
 		<div v-if="showSuccess">Le formulaire a été correctement rempli !</div>
-
-		<nav>
-			<router-link to="/">List</router-link>
-			<HomeView />
-		</nav>
-
 		<router-view />
 	</div>
 </template>
@@ -150,8 +144,7 @@ export default {
 	margin-right: auto;
 	margin-top: 150px;
 	max-width: 80%;
-	background-color: #404040;
-	color: #ffffff;
+	background: white;
 }
 
 h1 {
